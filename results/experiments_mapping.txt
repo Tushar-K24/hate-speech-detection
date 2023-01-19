@@ -7,7 +7,7 @@ Experiment 1: BERT with batchnorm
 4:  accuracy : 0.69000, precision : 0.66667, recall : 0.73469, f1-score : 0.69903, 
 5:  accuracy : 0.73000, precision : 0.66129, recall : 0.87234, f1-score : 0.75229, 
 6:  accuracy : 0.66000, precision : 0.59701, recall : 0.85106, f1-score : 0.70175, 
-7:  accuracy : 0.84000, precision : 0.84615, recall : 0.84615, f1-score : 0.84615, 
+7:  accuracy : 0.84000, precision : 0.84615, recall : 0.84615, f1-score : 0.84615,
 8:  accuracy : 0.78788, precision : 0.63889, recall : 0.74194, f1-score : 0.68657, 
 9:  accuracy : 0.82828, precision : 0.78000, recall : 0.86667, f1-score : 0.82105, 
 
@@ -61,3 +61,20 @@ Experiment 4: BERT with first tokens stacked
 
 Avg score:
 accuracy : 0.76549, precision : 0.71454, recall : 0.78820, f1-score : 0.74624,
+
+Experiment 5: BERT + KimCNN
+
+0:  accuracy : 0.79245, precision : 0.75000, recall : 0.67500, f1-score : 0.71053, 
+1:  accuracy : 0.76415, precision : 0.68000, recall : 0.79070, f1-score : 0.73118, 
+2:  accuracy : 0.79245, precision : 0.79070, recall : 0.72340, f1-score : 0.75556, 
+3:  accuracy : 0.80189, precision : 0.80000, recall : 0.86667, f1-score : 0.83200, 
+4:  accuracy : 0.87619, precision : 0.82692, recall : 0.91489, f1-score : 0.86869, 
+5:  accuracy : 0.76190, precision : 0.59574, recall : 0.82353, f1-score : 0.69136, 
+6:  accuracy : 0.77143, precision : 0.73770, recall : 0.84906, f1-score : 0.78947, 
+7:  accuracy : 0.71429, precision : 0.61702, recall : 0.70732, f1-score : 0.65909, 
+8:  accuracy : 0.89524, precision : 0.92857, recall : 0.82979, f1-score : 0.87640, 
+9:  accuracy : 0.82857, precision : 0.78261, recall : 0.81818, f1-score : 0.80000, 
+
+Avg score:
+accuracy : 0.79986, precision : 0.75093, recall : 0.79985, f1-score : 0.77143, 
+
