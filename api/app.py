@@ -1,5 +1,5 @@
 import torch
-import time
+import os
 from keras_preprocessing.sequence import pad_sequences
 from transformers import BertTokenizerFast, BertConfig, BertModel
 from flask import Flask, request, jsonify
@@ -11,10 +11,10 @@ app = Flask(__name__)
 # configure device (cpu or gpu)
 if torch.cuda.is_available():
     device = torch.device("cuda")
-    print("There are %d GPU(s) available." % torch.cuda.device_count())
-    print("We will use the GPU:", torch.cuda.get_device_name(0))
+    # print("There are %d GPU(s) available." % torch.cuda.device_count())
+    # print("We will use the GPU:", torch.cuda.get_device_name(0))
 else:
-    print("No GPU available, using the CPU instead.")
+    # print("No GPU available, using the CPU instead.")
     device = torch.device("cpu")
 
 # configure BERT
@@ -32,9 +32,14 @@ net.load_state_dict(torch.load(CFG.data.PATH, map_location=device))
 net.eval()
 
 
-@app.route("/sentiment", methods=["GET"])
+@app.route("/")
+def index():
+    return "hate-speech"
+
+
+@app.route("/sentiment", methods=["POST"])
 def sentiment():
-    sent = request.form["sentence"]
+    sent = request.json["sentence"]
     input_ids = tokenizer.encode(sent, add_special_tokens=True)
     input_ids = pad_sequences(
         [input_ids],
@@ -51,7 +56,7 @@ def sentiment():
         input_ids, token_type_ids=None, attention_mask=att_mask
     ).last_hidden_state
     out = net(outputs.unsqueeze(0))
-    containsHateSpeech = int(out[0].argmax())
+    containsHateSpeech = bool(out[0].argmax())
     return {
         "sentence": sent,
         "containsHateSpeech": containsHateSpeech,
@@ -59,4 +64,4 @@ def sentiment():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
